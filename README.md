@@ -74,3 +74,4 @@ On the browser, pick-up the JS file `lib/umdlib.js` and add it as a script in yo
 [dependencies-url]: https://david-dm.org/jclo/umdlib#info=dependencies
 [devdependencies-url]: https://david-dm.org/jclo/umdlib#info=devDependencies
 [license-url]: http://opensource.org/licenses/MIT
+
