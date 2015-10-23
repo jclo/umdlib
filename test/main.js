@@ -15,7 +15,7 @@ describe('UMDLib', function() {
 
   // Test the second 'method'.
   describe('The method getString()', function() {
-    it ('Expects to return a string.', function() {
+    it ('Expects the method to return a string.', function() {
       expect(umdlib.getString()).to.be.a('string');
     });
   });

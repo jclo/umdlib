@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "template",
     "boilerplate"
   ],
-  "author": "jclo <jc006@wanadoo.fr>",
+  "author": "jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jclo/umdlib/issues"
