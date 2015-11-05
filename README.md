@@ -17,7 +17,62 @@ UMDLib relies on [Mocha](https://mochajs.org) and [Chai](http://chaijs.com) for 
 UMDLib uses [Travis CI](https://travis-ci.org) for continuous integration and [Coveralls.io](https://coveralls.io) to display test coverage.
 
 
+## Quick Startup
+
+You can easily get your first UMD library running in a couple of minutes by just typing a few command lines. But first, you need to create an empty folder. It will contain your library.
+
+Then, you have to install the `umdlib` package globally. Open a terminal session and type the command line:
+
+```
+npm install umdlib -g
+```
+
+Or, if you don't have the rights to install umdlib globally, you can install it locally in your project. Open a terminal session, move to your working directory - the empty folder you created - and type the following command line:
+
+```
+npm install umdlib
+```
+
+Now populate your empty folder and create your first UMD library:
+
+```
+// populate
+umdlib populate -n myapp
+// Or, if you installed the package locally:
+./node_modules/umdlib/bin/umdlib.js populate -n myapp
+// Install Node.js packages
+npm install
+```
+
+Now your folder contains the following files:
+
+```
+YourFolder
+    |_ README.md             // Your README file,
+    |_ LICENSE.md            // The license that applies to your library (here MIT),
+    |_ CHANGELOG.md          // The changes between your different versions,
+    |_ package.json          // The NPM package dependencies for your library,
+    |_ .travis.yml           // A configuration file for Travis CI (if you use it),
+    |_ .eslintrc             // A Configuration file for the ESLint linter tool (if you use it),
+    |_ .gitignore            // Files that Git must ignore (if you use git), 
+    |_ index.js              // The link to your UMD library,
+    |_ lib
+    |   |_ umdlib.js         // Your UMD library,
+    |_ test
+        |_ main.js           // Your Mocha, Chai test file,
+
+```
+
+This folder is now a NPM package.
+
+
 ## How to test it
+
+Your `package.json` file contains three scripts to test your UMD library:
+
+  * `npm run test`,
+  * `npm run check-coverage`,
+  * `npm run display-coverage`.
 
 `npm run test` executes the tests and computes the test coverage.
 
@@ -28,11 +83,17 @@ UMDLib uses [Travis CI](https://travis-ci.org) for continuous integration and [C
 
 ## How to use it
 
-On Node.js install UMDLib (npm install umdlib) and create a file that contains:
+On Node.js, your project folder is viewed as a NPM package. Choose a working directory outside your project folder, create a folder `node_modules` and copy your project folder into `node_modules`. Then, on your terminal, type (at your working directory level):
 
 ```
-var umdlib = require('umdlib');
-...
+node
+> var mylib = require('toto');
+undefined
+> mylib.getString();
+'I am a string!'
+> mylib.getArray();
+[ '1', '2', '3' ]
+>
 ```
 
 On the browser, pick-up the JS file `lib/umdlib.js` and add it as a script in your HTML file. `umdlib` is an immediately-invoked function expression. It attaches the `UMDLib` variable to the current context.
@@ -48,6 +109,8 @@ On the browser, pick-up the JS file `lib/umdlib.js` and add it as a script in yo
   </body>
 </html>
 ```
+
+Enjoy!
 
 ## License
 

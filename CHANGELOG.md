@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.2.0 (November 5, 2015)
+
+  * Added a CLI script that creates the UMD library skeleton.
+
+
 ### 0.1.3 (October 30, 2015)
 
   * Made the command npm run display-coverage cross-platform,
