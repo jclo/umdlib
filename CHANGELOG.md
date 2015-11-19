@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.2.1 (November 19, 2015)
+
+  * Updated dependencies.
+
+
 ### 0.2.0 (November 5, 2015)
 
   * Added a CLI script that creates the UMD library skeleton.
