@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "scripts": {
@@ -27,8 +27,8 @@
   "homepage": "https://github.com/jclo/umdlib",
   "devDependencies": {
     "chai": "3.4.1",
-    "coveralls": "2.11.4",
-    "ghooks": "1.0.1",
+    "coveralls": "2.11.6",
+    "ghooks": "1.0.3",
     "istanbul": "0.4",
     "mocha": "2.3.4",
     "nopt": "3.0.6",
