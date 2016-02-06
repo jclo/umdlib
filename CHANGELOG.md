@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.2.5 (February 6, 2016)
+
+  * Moved package path from devDependencies to dependencies for consistency.
+
+
 ### 0.2.4 (February 6, 2016)
 
   * Moved package nopt to dependencies instead of devDependencies,

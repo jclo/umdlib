@@ -172,7 +172,7 @@ function _customizeApp(baseumdlib, baseapp, appname) {
   obj.homepage = 'https://github.com/author/libname';
   delete obj.bin;
   delete obj.dependencies.nopt;
-  delete obj.devDependencies.path;
+  delete obj.dependencies.path;
   delete obj.readme;
   delete obj.readmeFilename;
   delete obj.gitHead;
