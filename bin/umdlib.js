@@ -170,9 +170,15 @@ function _customizeApp(baseumdlib, baseapp, appname) {
   obj.author = 'John Doe <jdo@johndoe.com> (http://www.johndoe.com)';
   obj.bugs.url = 'https://github.com/author/libname/issues';
   obj.homepage = 'https://github.com/author/libname';
-  delete obj.devDependencies.bin;
-  delete obj.devDependencies.nopt;
+  delete obj.bin;
+  delete obj.dependencies.nopt;
   delete obj.devDependencies.path;
+  delete obj.readme;
+  delete obj.readmeFilename;
+  delete obj.gitHead;
+  delete obj._id;
+  delete obj._shasum;
+  delete obj._from;
 
   console.log('  ' + npm);
   fs.writeFileSync(path.join(baseapp, npm), JSON.stringify(obj, null, 2));
@@ -273,7 +279,8 @@ function _populate(opts) {
   console.log('  ' + '.eslintrc');
   _copyFile(path.join(baseumdlib, '.eslintrc'), path.join(baseapp, '.eslintrc'));
   console.log('  ' + '.gitignore');
-  _copyFile(path.join(baseumdlib, '.gitignore'), path.join(baseapp, '.gitignore'));
+  //_copyFile(path.join(baseumdlib, '.gitignore'), path.join(baseapp, '.gitignore'));
+  fs.closeSync(fs.openSync('.gitignore', 'w'));
   console.log('  ' + '.travis.yml');
   _copyFile(path.join(baseumdlib, '.travis.yml'), path.join(baseapp, '.travis.yml'));
 

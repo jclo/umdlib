@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.2.4 (February 6, 2016)
+
+  * Moved package nopt to dependencies instead of devDependencies,
+  * Modified bin/umdlib.js to improve the cleanup of the imported package.json file.
+
+
 ### 0.2.3 (January 8, 2016)
 
   * Updated dependencies,

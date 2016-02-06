@@ -1,8 +1,11 @@
 {
   "name": "umdlib",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
+  "bin": {
+    "umdlib": "./bin/umdlib.js"
+  },
   "scripts": {
     "test": "istanbul cover -x ./test/main.js _mocha -- -R spec ./test/main.js",
     "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
@@ -25,13 +28,15 @@
     "url": "https://github.com/jclo/umdlib/issues"
   },
   "homepage": "https://github.com/jclo/umdlib",
+  "dependencies": {
+    "nopt": "3.0.6"
+  },
   "devDependencies": {
     "chai": "3.4.1",
     "coveralls": "2.11.6",
     "ghooks": "1.0.3",
     "istanbul": "0.4",
     "mocha": "2.3.4",
-    "nopt": "3.0.6",
     "opener": "1.4.1",
     "path": "0.12.7"
   },
