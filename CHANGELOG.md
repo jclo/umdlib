@@ -1,5 +1,10 @@
 ### HEAD
 
+### 0.2.6 (February 19, 2016)
+
+  * Updated dependencies.
+
+
 ### 0.2.5 (February 6, 2016)
 
   * Moved package path from devDependencies to dependencies for consistency.

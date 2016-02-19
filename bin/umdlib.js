@@ -167,7 +167,9 @@ function _customizeApp(baseumdlib, baseapp, appname) {
   obj.description = appname + ' ...';
   obj.repository.url = 'https://github.com/author/libname.git';
   obj.keywords = ['to be filled'];
-  obj.author = 'John Doe <jdo@johndoe.com> (http://www.johndoe.com)';
+  obj.author.name = 'John Doe';
+  obj.author.email = 'jdo@johndoe.com';
+  obj.author.url = 'http://www.johndoe.com';
   obj.bugs.url = 'https://github.com/author/libname/issues';
   obj.homepage = 'https://github.com/author/libname';
   delete obj.bin;

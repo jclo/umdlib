@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -22,7 +22,11 @@
     "template",
     "boilerplate"
   ],
-  "author": "jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr/)",
+  "author": {
+    "name": "jclo",
+    "email": "jclo@mobilabs.fr",
+    "url": "http://www.mobilabs.fr/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jclo/umdlib/issues"
@@ -33,11 +37,11 @@
     "path": "0.12.7"
   },
   "devDependencies": {
-    "chai": "3.4.1",
+    "chai": "3.5.0",
     "coveralls": "2.11.6",
     "ghooks": "1.0.3",
     "istanbul": "0.4",
-    "mocha": "2.3.4",
+    "mocha": "2.4.5",
     "opener": "1.4.1"
   },
   "config": {
