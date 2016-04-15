@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "coveralls": "2.11.6",
-    "ghooks": "1.0.3",
+    "coveralls": "2.11.9",
+    "ghooks": "1.2.1",
     "istanbul": "0.4",
     "mocha": "2.4.5",
     "opener": "1.4.1"
