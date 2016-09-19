@@ -67,7 +67,8 @@ var readme = [
   '## License',
   ' ',
   'MIT.',
-  ''].join('\n');
+  ''
+].join('\n');
 
 var license = [
   'The MIT License (MIT)',
@@ -91,7 +92,8 @@ var license = [
   'LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,',
   'OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN',
   'THE SOFTWARE.',
-  ''].join('\n');
+  ''
+].join('\n');
 
 var changelog = [
   '### HEAD',
@@ -104,6 +106,7 @@ var changelog = [
 
 
 // -- Private functions
+/* eslint-disable no-underscore-dangle */
 
 /**
  * Removes the cached files and returns the array.
@@ -149,22 +152,22 @@ function _copyFile(source, dest) {
  * @param {String}    the name of the UMD library,
  * @returns {}        -,
  */
-function _customizeApp(baseumdlib, baseapp, appname) {
+function _customizeApp(locbaseumdlib, locbaseapp, locappname) {
   var npm   = 'package.json'
     , json
     , obj
     ;
 
   // Rework package.json
-  json = fs.readFileSync(path.join(baseumdlib, npm), 'utf8', function (error) {
+  json = fs.readFileSync(path.join(locbaseumdlib, npm), 'utf8', function(error) {
     if (error)
       throw error;
   });
 
   obj = JSON.parse(json);
-  obj.name = appname;
+  obj.name = locappname;
   obj.version = '0.0.0';
-  obj.description = appname + ' ...';
+  obj.description = locappname + ' ...';
   obj.repository.url = 'https://github.com/author/libname.git';
   obj.keywords = ['to be filled'];
   obj.author.name = 'John Doe';
@@ -183,8 +186,7 @@ function _customizeApp(baseumdlib, baseapp, appname) {
   delete obj._from;
 
   console.log('  ' + npm);
-  fs.writeFileSync(path.join(baseapp, npm), JSON.stringify(obj, null, 2));
-
+  fs.writeFileSync(path.join(locbaseapp, npm), JSON.stringify(obj, null, 2));
 }
 
 /**
@@ -206,10 +208,10 @@ function _copyRecursiveSync(source, dest) {
     files = _filter(fs.readdirSync(source));
     for (i = 0; i < files.length; i++) {
       if (fs.statSync(source + '/' + files[i]).isDirectory()) {
-        console.log('  ' + 'Add folder: ' + files[i]);
+        console.log('  Add folder: ' + files[i]);
         _copyRecursiveSync(source + '/' + files[i], dest + '/' + files[i]);
       } else {
-        console.log('  ' + 'Add file: ' + files[i]);
+        console.log('  Add file: ' + files[i]);
         _copyFile(source + '/' + files[i], dest + '/' + files[i]);
       }
     }
@@ -225,7 +227,6 @@ function _copyRecursiveSync(source, dest) {
  * @private
  */
 function _help() {
-
   var message = ['',
     'Usage: command [options]',
     '',
@@ -251,8 +252,8 @@ function _help() {
  * @param {Object}    the command line options,
  * @returns {}        -,
  */
-function _populate(opts) {
-  var app = opts.name || 'myApp'
+function _populate(locopts) {
+  var app = locopts.name || 'myApp'
     , files
     ;
 
@@ -268,22 +269,22 @@ function _populate(opts) {
   console.log('Populates the folder with:');
 
   // Create README.md, LICENSE.md, CHANGELOG.md
-  console.log('  ' + 'README.md');
+  console.log('  README.md');
   fs.writeFileSync(path.join(baseapp, 'README.md'), readme);
-  console.log('  ' + 'LICENSE.md');
+  console.log('  LICENSE.md');
   fs.writeFileSync(path.join(baseapp, 'LICENSE.md'), license);
-  console.log('  ' + 'CHANGELOG.md');
+  console.log('  CHANGELOG.md');
   fs.writeFileSync(path.join(baseapp, 'CHANGELOG.md'), changelog);
 
   // Add index.js, .eslintrc, .gitignore, .travis.yml
-  console.log('  ' + 'index.js');
+  console.log('  index.js');
   _copyFile(path.join(baseumdlib, 'index.js'), path.join(baseapp, 'index.js'));
-  console.log('  ' + '.eslintrc');
+  console.log('  .eslintrc');
   _copyFile(path.join(baseumdlib, '.eslintrc'), path.join(baseapp, '.eslintrc'));
-  console.log('  ' + '.gitignore');
-  //_copyFile(path.join(baseumdlib, '.gitignore'), path.join(baseapp, '.gitignore'));
+  console.log('  .gitignore');
+  // _copyFile(path.join(baseumdlib, '.gitignore'), path.join(baseapp, '.gitignore'));
   fs.closeSync(fs.openSync('.gitignore', 'w'));
-  console.log('  ' + '.travis.yml');
+  console.log('  .travis.yml');
   _copyFile(path.join(baseumdlib, '.travis.yml'), path.join(baseapp, '.travis.yml'));
 
   // Add the package.json and remove UMDLib dependencies.
@@ -294,8 +295,8 @@ function _populate(opts) {
   _copyRecursiveSync(path.join(baseumdlib, lib), path.join(baseapp, lib));
   _copyRecursiveSync(path.join(baseumdlib, test), path.join(baseapp, test));
   console.log('Done. Enjoy!');
-
 }
+/* eslint-disable no-underscore-dangle */
 
 // -- Main
 if (parsed.help)

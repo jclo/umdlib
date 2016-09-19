@@ -1,4 +1,5 @@
 .DS_Store
+_trash
 node_modules
 coverage
 .tern-project
