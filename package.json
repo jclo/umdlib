@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.4.0beta1",
+  "version": "0.4.0",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -51,7 +51,7 @@
     "gulp-header": "1.8.8",
     "gulp-replace": "0.5.4",
     "gulp-uglify": "2.1.1",
-    "husky": "0.13.2",
+    "husky": "0.13.3",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
     "opener": "1.4.3"
