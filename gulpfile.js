@@ -23,7 +23,7 @@ var dist       = './lib'
   , watch      = 'src/**/*.js'
   ;
 
-// -- ...
+// -- Text for replacing the tags ({{lib:xxx}}) in the code:
 var lib = {
   name: 'UMDLib',
   title: 'UMDLib',
@@ -36,14 +36,14 @@ var lib = {
   }
 };
 
-// List of JS files to merge For PicoDB.
+// List of JS files to concatenate:
 var libjs = [
   './src/_header',
   './src/core.js',
   './src/_footer'
 ];
 
-// License Header to add to 'picodb.js' file:
+// License Header to add to the library:
 var license = ['/** ****************************************************************************',
   ' * {{lib:title}}',
   ' *',
@@ -87,7 +87,7 @@ gulp.task('doJS', ['create'], function() {
     .pipe(gulp.dest(dist));
 });
 
-// Minify
+// Minify:
 gulp.task('minify', ['doJS'], function() {
   return gulp.src(dist + '/' + name.toLowerCase() + '.js')
     .pipe(uglify({ preserveComments: 'license' }))
@@ -95,10 +95,10 @@ gulp.task('minify', ['doJS'], function() {
     .pipe(gulp.dest(dist));
 });
 
-// Rebuild if a file was modified:
+// Rebuild if a file is modified:
 gulp.task('watch', function() {
   gulp.watch(watch, ['minify']);
 });
 
-// -- Gulp Build (called when you run `gulp xxx` from cli)
+// -- Gulp Build (called when you run `gulp` from cli)
 gulp.task('default', ['minify']);

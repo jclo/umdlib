@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.4.1 (March 24, 2017)
+
+  * Fixed typos in the comments,
+  * ...,
+
+
 ### 0.4.0 (March 24, 2017)
 
   * Added a Gulp build,
