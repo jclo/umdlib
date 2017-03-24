@@ -1,0 +1,41 @@
+// ESLint declarations
+/* global define */
+/* eslint-disable max-len, no-param-reassign, one-var-declaration-per-line, no-underscore-dangle */
+(function(root, factory) {
+  'use strict';
+
+  /* istanbul ignore next */
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([''], factory);
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(root);
+  } else {
+    // Browser globals.
+    root.{{lib:name}} = factory(root);
+  }
+}(this, function(root) {
+  'use strict';
+
+  var {{lib:name}}
+    , previous{{lib:name}}
+    ;
+
+  // Saves the previous value of the PicoDB variable, so that it can be
+  // restored later on, if noConflict is used.
+  previous{{lib:name}} = root.{{lib:name}};
+
+  // Initializes Blob function.
+  /* istanbul ignore next */
+  {{lib:name}} = function() {};
+
+  // Runs {{lib:name}} in noConflict mode, returning the {{lib:name}} variable to its
+  // previous owner. Returns a reference to this {{lib:name}} object.
+  /* istanbul ignore next */
+  {{lib:name}}.noConflict = function() {
+    root.{{lib:name}} = previous{{lib:name}};
+    return this;
+  };

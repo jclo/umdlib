@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.4.0 (March 24, 2017)
+
+  * Added a Gulp build,
+  * ...,
+
+
 ### 0.3.1 (December 26, 2016)
 
   * Updated the dependencies and replaced the deprecated ghooks module by Husky.

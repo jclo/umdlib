@@ -4,7 +4,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2015-2016 jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr)
+ * Copyright (c) 2017 jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ var fs      = require('fs')
 var baseapp        = process.cwd()
   , baseumdlib     = __dirname.replace('/bin', '')
   , version        = require('../package.json').version
-  , lib            = 'lib'
+  , src            = 'src'
   , test           = 'test'
     // Command line Options
   , opts = {
@@ -74,7 +74,7 @@ var readme = [
 var license = [
   'The MIT License (MIT)',
   '',
-  'Copyright (c) 2016 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
+  'Copyright (c) 2017 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
   '',
   'Permission is hereby granted, free of charge, to any person obtaining a copy',
   'of this software and associated documentation files (the "Software"), to deal',
@@ -191,6 +191,33 @@ function _customizeApp(locbaseumdlib, locbaseapp, locappname) {
 }
 
 /**
+ * Removes UMDLib dependencies to gulpfile.js
+ *
+ * @function (arg1, arg2, arg3)
+ * @private
+ * @param {String}    the root path of UMDLib,
+ * @param {String}    the root path of UMD library,
+ * @param {String}    the name of the UMD library,
+ * @returns {}        -,
+ */
+function _customizeGulp(locbaseumdlib, locbaseapp, locappname) {
+  var gulpfile = 'gulpfile.js'
+    , gulp
+    ;
+
+  // Rework gulpfile.js
+  gulp = fs.readFileSync(path.join(locbaseumdlib, gulpfile), 'utf8', function(error) {
+    if (error)
+      throw error;
+  });
+
+  gulp = gulp.replace(/UMDLib/g, locappname);
+
+  console.log('  ' + gulpfile);
+  fs.writeFileSync(path.join(locbaseapp, gulpfile), gulp);
+}
+
+/**
  * Recursively copies source to destination.
  *
  * @function (arg1, arg2)
@@ -291,9 +318,12 @@ function _populate(locopts) {
   // Add the package.json and remove UMDLib dependencies.
   _customizeApp(baseumdlib, baseapp, app);
 
+  // Add the gulpfile.js and remove UMDLib dependencies.
+  _customizeGulp(baseumdlib, baseapp, app);
+
   // Create and fill lib and test folders.
   console.log('Fills the UMD lib skeleton:');
-  _copyRecursiveSync(path.join(baseumdlib, lib), path.join(baseapp, lib));
+  _copyRecursiveSync(path.join(baseumdlib, src), path.join(baseapp, src));
   _copyRecursiveSync(path.join(baseumdlib, test), path.join(baseapp, test));
   console.log('Done. Enjoy!');
 }

@@ -7,7 +7,6 @@
     space-before-function-paren: ["error", "never"],
     no-multi-spaces: ["error", { exceptions: { "VariableDeclarator": true } }],
     comma-style: ["error", "first", { "exceptions": { "ArrayExpression": true, "ObjectExpression": true } }],
-    key-spacing: ["error", { "align": "value" }],
     no-plusplus: ["error", { "allowForLoopAfterthoughts": true }]
   }
 }

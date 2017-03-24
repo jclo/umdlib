@@ -1,0 +1,7 @@
+// Current version of the library.
+  {{lib:name}}.VERSION = '{{lib:version}}';
+
+  // Returns the library name:
+  return {{lib:name}};
+  /* eslint-disable max-len, one-var-declaration-per-line */
+}));

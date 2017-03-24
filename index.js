@@ -1,1 +1,1 @@
-module.exports = require('./lib/umdlib');
+module.exports = require('./lib/' + require('./package.json').name);
