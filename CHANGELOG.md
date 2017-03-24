@@ -3,7 +3,7 @@
 ### 0.4.1 (March 24, 2017)
 
   * Fixed typos in the comments,
-  * ...,
+  * Release.
 
 
 ### 0.4.0 (March 24, 2017)
