@@ -4,7 +4,7 @@
 
   * Improved the build by splitting it into multiple files,
   * Added a script that builds a library intended to be embedded into another lib,
-  * ...,
+  * Release.
 
 
 ### 0.4.1 (March 24, 2017)
