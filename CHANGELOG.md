@@ -1,5 +1,12 @@
 ### HEAD
 
+### 0.5.0 (August 15, 2017)
+
+  * Improved the build by splitting it into multiple files,
+  * Added a script that builds a library intended to be embedded into another lib,
+  * ...,
+
+
 ### 0.4.1 (March 24, 2017)
 
   * Fixed typos in the comments,

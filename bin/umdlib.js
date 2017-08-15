@@ -25,42 +25,44 @@
  * THE SOFTWARE.
  * ***************************************************************************/
 /* eslint-env node */
-/* eslint curly: 0, no-console: 0, max-len: [1, 110, 2] */
+/* eslint one-var: 0 */
 
 'use strict';
 
 // -- Node modules
-var fs      = require('fs')
-  , nopt    = require('nopt')
-  , path    = require('path')
-  ;
+const fs       = require('fs')
+    , Readable = require('stream').Readable
+    , nopt     = require('nopt')
+    , path     = require('path')
+    ;
 
 // -- Global variables
-var baseapp        = process.cwd()
-  , baseumdlib     = __dirname.replace('/bin', '')
-  , version        = require('../package.json').version
-  , src            = 'src'
-  , test           = 'test'
-    // Command line Options
-  , opts = {
-    help:       [Boolean, false],
-    version:    [String, null],
-    collection: [Boolean, false],
-    path:       path,
-    name:       [String, null]
-  }
+const baseapp    = process.cwd()
+    , baseumdlib = __dirname.replace('/bin', '')
+    , version    = require('../package.json').version
+    , src        = 'src'
+    , test       = 'test'
+    , tasks      = 'tasks'
+      // Command line Options
+    , opts = {
+      help: [Boolean, false],
+      version: [String, null],
+      collection: [Boolean, false],
+      path,
+      name: [String, null],
+    }
   , shortOpts = {
     h: ['--help'],
     v: ['--version', version],
     c: ['--collection'],
     p: ['--path'],
-    n: ['--name']
+    n: ['--name'],
   }
   , parsed = nopt(opts, shortOpts, process.argv, 2)
   ;
 
 // -- Templates
-var readme = [
+const readme = [
   '# MyApp',
   ' ',
   'Bla bla ...',
@@ -68,10 +70,10 @@ var readme = [
   '## License',
   ' ',
   'MIT.',
-  ''
+  '',
 ].join('\n');
 
-var license = [
+const license = [
   'The MIT License (MIT)',
   '',
   'Copyright (c) 2017 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
@@ -93,20 +95,22 @@ var license = [
   'LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,',
   'OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN',
   'THE SOFTWARE.',
-  ''
+  '',
 ].join('\n');
 
-var changelog = [
+const changelog = [
   '### HEAD',
   '',
   '',
-  '### 0.1.0 (Month Day, Year)',
+  '### 0.0.0 (Month Day, Year)',
   '',
   '  * Initial build.',
   ''].join('\n');
 
+const gitignore = '';
 
-// -- Private functions
+
+// -- Private functions --------------------------------------------------------
 /* eslint-disable no-underscore-dangle */
 
 /**
@@ -118,14 +122,14 @@ var changelog = [
  * @returns {Array}   returns the filtered array,
  */
 function _filter(files) {
-  var filtered
-    , i
+  const filtered = []
     ;
 
-  filtered = [];
-  for (i = 0; i < files.length; i++)
-    if (files[i].match(/^\./) === null)
+  for (let i = 0; i < files.length; i++) {
+    if (!files[i].match(/^\./)) {
       filtered.push(files[i]);
+    }
+  }
 
   return filtered;
 }
@@ -144,7 +148,31 @@ function _copyFile(source, dest) {
 }
 
 /**
- * Removes UMDLib dependencies to package.json
+ * Copies source data to destination file.
+ *
+ * @function (arg1, arg2)
+ * @private
+ * @param {String}    the destination path,
+ * @param {Array}     the files to create and their contents,
+ * @returns {}        -,
+ */
+function _createFiles(destpath, files) {
+  let s
+    ;
+
+  for (let i = 0; i < files[0].length; i++) {
+    // Convert the string to a readable stream:
+    s = new Readable();
+    s.push(files[0][i]);
+    s.push(null);
+    // Write the stream to the destination file:
+    s.pipe(fs.createWriteStream(path.join(destpath, files[1][i])));
+    process.stdout.write(`  ${files[1][i]}\n`);
+  }
+}
+
+/**
+ * Removes UMDLib dependencies to package.json.
  *
  * @function (arg1, arg2, arg3)
  * @private
@@ -154,44 +182,51 @@ function _copyFile(source, dest) {
  * @returns {}        -,
  */
 function _customizeApp(locbaseumdlib, locbaseapp, locappname) {
-  var npm   = 'package.json'
-    , json
-    , obj
+  const npm   = 'package.json'
     ;
 
-  // Rework package.json
-  json = fs.readFileSync(path.join(locbaseumdlib, npm), 'utf8', function(error) {
-    if (error)
+  // Read package.json:
+  fs.readFile(path.join(locbaseumdlib, npm), 'utf8', (error, data) => {
+    if (error) {
       throw error;
+    }
+
+    // Fix package.json:
+    const obj = JSON.parse(data);
+    const pack = {};
+    pack.name = locappname;
+    pack.version = '0.0.0';
+    pack.description = `${locappname} ...`;
+    pack.main = obj.main;
+    pack.bin = {};
+    pack.scripts = obj.scripts;
+    pack.repository = obj.repository;
+    pack.repository.url = 'https://github.com/author/libname.git';
+    pack.keywords = [];
+    pack.author = obj.author;
+    pack.author.name = 'John Doe';
+    pack.author.email = 'jdo@johndoe.com';
+    pack.author.url = 'http://www.johndoe.com';
+    pack.license = obj.license;
+    pack.bugs = obj.bugs;
+    pack.bugs.url = 'https://github.com/author/libname/issues';
+    pack.homepage = 'https://github.com/author/libname';
+    pack.dependencies = {};
+    pack.devDependencies = obj.devDependencies;
+
+    // Write the updated package.json:
+    fs.writeFile(path.join(locbaseapp, npm), JSON.stringify(pack, null, 2), 'utf8', (err) => {
+      if (err) {
+        throw err;
+      }
+
+      process.stdout.write(`  ${npm}\n`);
+    });
   });
-
-  obj = JSON.parse(json);
-  obj.name = locappname;
-  obj.version = '0.0.0';
-  obj.description = locappname + ' ...';
-  obj.repository.url = 'https://github.com/author/libname.git';
-  obj.keywords = ['to be filled'];
-  obj.author.name = 'John Doe';
-  obj.author.email = 'jdo@johndoe.com';
-  obj.author.url = 'http://www.johndoe.com';
-  obj.bugs.url = 'https://github.com/author/libname/issues';
-  obj.homepage = 'https://github.com/author/libname';
-  delete obj.bin;
-  delete obj.dependencies.nopt;
-  delete obj.dependencies.path;
-  delete obj.readme;
-  delete obj.readmeFilename;
-  delete obj.gitHead;
-  delete obj._id;
-  delete obj._shasum;
-  delete obj._from;
-
-  console.log('  ' + npm);
-  fs.writeFileSync(path.join(locbaseapp, npm), JSON.stringify(obj, null, 2));
 }
 
 /**
- * Removes UMDLib dependencies to gulpfile.js
+ * Removes UMDLib dependencies to the Gulpfile config.js.
  *
  * @function (arg1, arg2, arg3)
  * @private
@@ -201,52 +236,56 @@ function _customizeApp(locbaseumdlib, locbaseapp, locappname) {
  * @returns {}        -,
  */
 function _customizeGulp(locbaseumdlib, locbaseapp, locappname) {
-  var gulpfile = 'gulpfile.js'
-    , gulp
+  const config = 'config.js'
     ;
-
-  // Rework gulpfile.js
-  gulp = fs.readFileSync(path.join(locbaseumdlib, gulpfile), 'utf8', function(error) {
-    if (error)
+  // Read config.js file:
+  fs.readFile(path.join(locbaseumdlib, tasks, config), 'utf8', (error, data) => {
+    if (error) {
       throw error;
+    }
+
+    // Replace 'UMDLib' by the new name of the lib:
+    const conf = data.replace(/UMDLib/, locappname);
+    // Save it:
+    fs.writeFile(path.join(locbaseapp, tasks, config), conf, 'utf8', (err) => {
+      if (err) {
+        throw error;
+      }
+      process.stdout.write(`  ${tasks}/${config}\n`);
+    });
   });
-
-  gulp = gulp.replace(/UMDLib/g, locappname);
-
-  console.log('  ' + gulpfile);
-  fs.writeFileSync(path.join(locbaseapp, gulpfile), gulp);
 }
 
 /**
- * Recursively copies source to destination.
+ * Copies src files.
  *
- * @function (arg1, arg2)
+ * @function (arg1, arg2, arg3, arg4)
  * @private
- * @param {String}    the source folder/file,
- * @param {String}    the destination folder/file,
+ * @param {String}    the path of the src files,
+ * @param {String}    the path of the destination files,,
+ * @param {Array}     the name of src files,
+ * @param {String}    the name of the app,
  * @returns {}        -,
  */
-function _copyRecursiveSync(source, dest) {
-  var files
-    , i
+/* eslint-disable no-loop-func */
+function _copySrcFiles(source, dest, files, app) {
+  const re = new RegExp('{{lib:name}}', 'g')
+      ;
+  let s
     ;
 
-  if (fs.statSync(source).isDirectory()) {
-    fs.mkdirSync(dest);
-    files = _filter(fs.readdirSync(source));
-    for (i = 0; i < files.length; i++) {
-      if (fs.statSync(source + '/' + files[i]).isDirectory()) {
-        console.log('  Add folder: ' + files[i]);
-        _copyRecursiveSync(source + '/' + files[i], dest + '/' + files[i]);
-      } else {
-        console.log('  Add file: ' + files[i]);
-        _copyFile(source + '/' + files[i], dest + '/' + files[i]);
-      }
-    }
-  } else {
-    _copyFile(source, dest);
+  for (let i = 0; i < files.length; i++) {
+    // Read source file:
+    fs.readFile(path.join(source, files[i]), 'utf8', (error, data) => {
+      if (error) { throw error; }
+      s = data.replace(re, app);
+      fs.writeFile(path.join(dest, files[i]), s, 'utf8', (err) => {
+        if (err) { throw err; }
+        process.stdout.write(`  ${src}/${files[i]}\n`);
+      });
+    });
   }
-}
+} /* eslint-enable no-loop-func */
 
 /**
  * Displays help message.
@@ -255,7 +294,7 @@ function _copyRecursiveSync(source, dest) {
  * @private
  */
 function _help() {
-  var message = ['',
+  const message = ['',
     'Usage: command [options]',
     '',
     'populate            populate the app',
@@ -265,10 +304,10 @@ function _help() {
     '-h, --help          output usage information',
     '-v, --version       output the version number',
     '-n, --name          the name of the app',
-    ''
+    '',
   ].join('\n');
 
-  console.log(message);
+  process.stdout.write(`${message}\n`);
   process.exit(0);
 }
 
@@ -281,65 +320,77 @@ function _help() {
  * @returns {}        -,
  */
 function _populate(locopts) {
-  var app = locopts.name || 'myApp'
-    , files
-    ;
+  const app = locopts.name || 'myApp'
+      , newFiles = [
+        [readme, license, changelog, gitignore],
+        ['README.md', 'LICENSE.md', 'CHANGELOG.md', '.gitignore'],
+      ]
+      , dupFiles = ['index.js', '.travis.yml', 'eslint.sh', 'eslintrc-es5', 'eslintrc-es6', 'gulpfile.js']
+      , taskFiles = ['makejs.js', 'makedist.js', 'makelibwithoutdefinedroot.js']
+      , srcFiles = ['_header', '_footer', 'core.js']
+      , testFiles = ['main.js']
+      ;
 
-  // Check that the folder app is empty.
-  console.log('Checks that the folder app is empty...');
-  files = _filter(fs.readdirSync(baseapp));
+  // Check the folder app is empty:
+  process.stdout.write('Checks that the folder app is empty...\n');
+  const files = _filter(fs.readdirSync(baseapp));
   if (files.length > 1 || (files[0] !== undefined && files[0] !== 'node_modules')) {
-    console.log('This folder already contains files and/or folders. Clean it up first! Process aborted...');
+    process.stdout.write('This folder already contains files and/or folders. Clean it up first! Process aborted...\n');
     process.exit(1);
   }
 
-  // Ok. Populate it.
-  console.log('Populates the folder with:');
+  // Ok. Populate it:
+  process.stdout.write('Populates the folder with:\n');
 
-  // Create README.md, LICENSE.md, CHANGELOG.md
-  console.log('  README.md');
-  fs.writeFileSync(path.join(baseapp, 'README.md'), readme);
-  console.log('  LICENSE.md');
-  fs.writeFileSync(path.join(baseapp, 'LICENSE.md'), license);
-  console.log('  CHANGELOG.md');
-  fs.writeFileSync(path.join(baseapp, 'CHANGELOG.md'), changelog);
+  // Create README.md, LICENSE.md, CHANGELOG.md, gitignore:
+  _createFiles(baseapp, newFiles);
 
-  // Add index.js, .eslintrc, .gitignore, .travis.yml
-  console.log('  index.js');
-  _copyFile(path.join(baseumdlib, 'index.js'), path.join(baseapp, 'index.js'));
-  console.log('  .eslintrc');
-  _copyFile(path.join(baseumdlib, '.eslintrc'), path.join(baseapp, '.eslintrc'));
-  console.log('  .gitignore');
-  // _copyFile(path.join(baseumdlib, '.gitignore'), path.join(baseapp, '.gitignore'));
-  fs.closeSync(fs.openSync('.gitignore', 'w'));
-  console.log('  .travis.yml');
-  _copyFile(path.join(baseumdlib, '.travis.yml'), path.join(baseapp, '.travis.yml'));
+  // Duplicate index.js, ...
+  for (let i = 0; i < dupFiles.length; i++) {
+    process.stdout.write(`  ${dupFiles[i]}\n`);
+    _copyFile(path.join(baseumdlib, dupFiles[i]), path.join(baseapp, dupFiles[i]));
+  }
 
-  // Add the package.json and remove UMDLib dependencies.
+  // Add and customize package.json:
   _customizeApp(baseumdlib, baseapp, app);
 
-  // Add the gulpfile.js and remove UMDLib dependencies.
+  // Copy Gulp task files:
+  fs.mkdirSync(path.join(baseapp, tasks));
+  for (let i = 0; i < taskFiles.length; i++) {
+    process.stdout.write(`  ${tasks}/${taskFiles[i]}\n`);
+    _copyFile(path.join(baseumdlib, tasks, taskFiles[i]), path.join(baseapp, tasks, taskFiles[i]));
+  }
+  // Customizes config.js:
   _customizeGulp(baseumdlib, baseapp, app);
 
-  // Create and fill lib and test folders.
-  console.log('Fills the UMD lib skeleton:');
-  _copyRecursiveSync(path.join(baseumdlib, src), path.join(baseapp, src));
-  _copyRecursiveSync(path.join(baseumdlib, test), path.join(baseapp, test));
-  console.log('Done. Enjoy!');
+  // Copy src files:
+  fs.mkdirSync(path.join(baseapp, src));
+  _copySrcFiles(path.join(baseumdlib, src), path.join(baseapp, src), srcFiles, app);
+
+  // Copy test files:
+  fs.mkdirSync(path.join(baseapp, test));
+  for (let i = 0; i < testFiles.length; i++) {
+    process.stdout.write(`  ${test}/${testFiles[i]}\n`);
+    _copyFile(path.join(baseumdlib, test, testFiles[i]), path.join(baseapp, test, testFiles[i]));
+  }
+
+  // process.stdout.write('Done. Enjoy!\n');
 }
 /* eslint-disable no-underscore-dangle */
 
 // -- Main
-if (parsed.help)
+if (parsed.help) {
   _help();
+}
 
 if (parsed.version) {
-  console.log('umdlib version: ' + parsed.version);
+  // console.log('umdlib version: ' + parsed.version);
+  process.stdout.write(`umdlib version: ${parsed.version}\n`);
   process.exit(0);
 }
 
-if (parsed.argv.remain[0] === 'populate')
+if (parsed.argv.remain[0] === 'populate') {
   _populate(parsed);
-
-else
+} else {
   _help();
+}

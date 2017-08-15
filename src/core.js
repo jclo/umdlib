@@ -12,7 +12,7 @@
      * @public
      * @param {}          -,
      * @returns {Array}   returns an array,
-     * since 0.0.1
+     * @since 0.0.0
      */
     getArray: function() {
       return ['1', '2', '3'];
@@ -25,7 +25,7 @@
      * @public
      * @param {}           -,
      * @returns {String}   returns a string,
-     * since 0.0.1
+     * @since 0.0.0
      */
     getString: function() {
       return 'I am a string!';

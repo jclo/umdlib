@@ -1,21 +1,36 @@
+// ESLint declarations:
 /* global describe, it */
-/* eslint no-unused-vars: 0 */
-var should = require('chai').should();
-var expect = require('chai').expect;
-var umdlib = require('../index.js');
+/* eslint one-var: 0, no-unused-vars: 0, import/no-extraneous-dependencies: 0 */
 
-describe('UMDLib', function() {
+'use strict';
+
+// -- Node modules
+const should = require('chai').should()
+    , expect = require('chai').expect
+    ;
+
+// -- Local modules
+const umdlib = require('../index.js')
+    ;
+
+// -- Local constants
+
+// -- Local variables
+
+
+// -- Main
+describe('UMDLib', () => {
   // Test the first 'method'.
-  describe('The method getArray()', function() {
-    it('Should return an array.', function() {
-      var a = umdlib.getArray();
+  describe('The method getArray()', () => {
+    it('Should return an array.', () => {
+      const a = umdlib.getArray();
       a.should.be.a('array');
     });
   });
 
   // Test the second 'method'.
-  describe('The method getString()', function() {
-    it('Expects the method to return a string.', function() {
+  describe('The method getString()', () => {
+    it('Expects the method to return a string.', () => {
       expect(umdlib.getString()).to.be.a('string');
     });
   });
