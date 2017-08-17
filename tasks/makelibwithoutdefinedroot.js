@@ -49,7 +49,7 @@ gulp.task('rmjsfiles', function() {
 // Create the full library:
 gulp.task('doemlib', function() {
   return gulp.src(src)
-    .pipe(concat(`${lib}.js`))
+    .pipe(concat(`${lib.toLowerCase()}.js`))
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${lib}`))
     .pipe(replace('{{lib:version}}', version))

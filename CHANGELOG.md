@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.5.1 (August 17, 2017)
+
+  * Forced the library file name to always be in lowercase characters,
+  * ...,
+
+
 ### 0.5.0 (August 15, 2017)
 
   * Improved the build by splitting it into multiple files,

@@ -45,7 +45,7 @@ gulp.task('skeleton', function() {
 
 // Copy the development version:
 gulp.task('copydev', function() {
-  return gulp.src(`${libdir}/${libname}.js`)
+  return gulp.src(`${libdir}/${libname.toLowerCase()}.js`)
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
     .pipe(replace('{{lib:version}}', release))
@@ -59,7 +59,7 @@ gulp.task('makeminified', function() {
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
     .pipe(replace('{{lib:version}}', release))
-    .pipe(concat(`${libname}.min.js`))
+    .pipe(concat(`${libname.toLowerCase()}.min.js`))
     .pipe(gulp.dest(dist));
 });
 

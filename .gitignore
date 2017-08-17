@@ -1,5 +1,5 @@
- __trash
- .DS_Store
+__trash
+.DS_Store
 _dist
 _UMDLib-*
 node_modules

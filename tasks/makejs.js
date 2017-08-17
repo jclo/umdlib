@@ -36,7 +36,7 @@ gulp.task('dolib', function() {
   return gulp.src(src)
     .pipe(replace('{{lib:name}}', lib))
     .pipe(replace('{{lib:parent}}', parent))
-    .pipe(concat(`${lib}.js`))
+    .pipe(concat(`${lib.toLowerCase()}.js`))
     .pipe(gulp.dest(dest));
 });
 
