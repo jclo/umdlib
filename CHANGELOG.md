@@ -4,7 +4,7 @@
 
   * Completed the library with new patterns functional, prototypal and pseudoclassical,
   * Set functional-shared as the default pattern,
-  * ...,
+  * Release.
 
 
 ### 0.5.1 (August 17, 2017)
