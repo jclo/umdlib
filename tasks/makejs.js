@@ -3,21 +3,21 @@
 'use strict';
 
 // -- Node modules
-const del     = require('del')
-    , gulp    = require('gulp')
-    , concat  = require('gulp-concat')
+const del         = require('del')
+    , gulp        = require('gulp')
+    , concat      = require('gulp-concat')
     , replace     = require('gulp-replace')
     , runSequence = require('run-sequence')
     ;
 
 // -- Local modules
-const config  = require('./config')
+const config = require('./config')
     ;
 
 // -- Local constants
-const dest = config.libdir
-    , src  = config.src
-    , lib  = config.libname
+const dest   = config.libdir
+    , src    = config.src
+    , lib    = config.libname
     , parent = config.parent
     ;
 

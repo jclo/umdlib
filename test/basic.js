@@ -30,39 +30,34 @@ describe('Test UMDLib:', () => {
     });
   });
 
-  describe('Test UMDLib constructor and methods:', () => {
-    const o = UMDLib();
-
-    it('Expects UMDLib() to return an object.', () => {
-      expect(o).to.be.an('object');
+  describe('Test the UMDLib methods:', () => {
+    //
+    it('Expects UMDLib to own the method "getString".', () => {
+      expect(UMDLib.getString).to.be.a('function');
     });
 
-    it('Expects this object to own the property "getString" that is a function.', () => {
-      expect(o).to.have.property('getString').that.is.a('function');
+    it('Expects UMDLib.getString() to return the string "I am a string!".', () => {
+      expect(UMDLib.getString()).to.be.a('string').that.is.equal('I am a string!');
     });
 
-    it('Expects this object to own the property "getArray" that is a function.', () => {
-      expect(o).to.have.property('getArray').that.is.a('function');
+    it('Expects UMDLib to own the method "getArray".', () => {
+      expect(UMDLib.getArray).to.be.a('function');
     });
 
-    it('Expects "getString" to return the string "I am a string!".', () => {
-      expect(o.getString()).to.be.a('string').that.is.equal('I am a string!');
-    });
-
-    it('Expects "getArray" to return an array with 3 elements.', () => {
-      expect(o.getArray()).to.be.an('array').that.has.lengthOf(3);
+    it('Expects UMDLib.getArray() to return an array with 3 elements.', () => {
+      expect(UMDLib.getArray()).to.be.an('array').that.has.lengthOf(3);
     });
 
     it('Expects the first element to be equal to 1.', () => {
-      expect(o.getArray()[0]).to.be.a('number').that.is.equal(1);
+      expect(UMDLib.getArray()[0]).to.be.a('number').that.is.equal(1);
     });
 
     it('Expects the second element to be equal to 2.', () => {
-      expect(o.getArray()[1]).to.be.a('number').that.is.equal(2);
+      expect(UMDLib.getArray()[1]).to.be.a('number').that.is.equal(2);
     });
 
     it('Expects the third element to be equal to 3.', () => {
-      expect(o.getArray()[2]).to.be.a('number').that.is.equal(3);
+      expect(UMDLib.getArray()[2]).to.be.a('number').that.is.equal(3);
     });
   });
 });

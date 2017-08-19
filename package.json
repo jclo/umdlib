@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -12,7 +12,7 @@
     "makedist": "gulp",
     "makelib": "gulp makenoparentlib",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov _mocha ./test/main.js",
-    "check-coverage": "nyc check-coverage --statements 100 --branches 94 --functions 100 --lines 100",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "display-coverage": "opener ./coverage/lcov-report/index.html",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "report": "nyc report",
@@ -43,9 +43,9 @@
     "path": "0.12.7"
   },
   "devDependencies": {
-    "chai": "4.1.0",
+    "chai": "4.1.1",
     "coveralls": "2.13.1",
-    "cross-env": "5.0.1",
+    "cross-env": "5.0.5",
     "del": "3.0.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb-base": "11.2.0",
@@ -57,10 +57,10 @@
     "gulp-replace": "0.6.1",
     "gulp-uglify": "3.0.0",
     "husky": "0.14.3",
-    "mocha": "3.4.2",
+    "mocha": "3.5.0",
     "nyc": "10.3.0",
     "opener": "1.4.3",
     "require-dir": "0.3.2",
-    "run-sequence": "2.0.0"
+    "run-sequence": "2.1.0"
   }
 }

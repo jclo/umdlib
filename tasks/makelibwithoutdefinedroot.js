@@ -13,7 +13,7 @@ const del         = require('del')
     ;
 
 // -- Local modules
-const config  = require('./config')
+const config = require('./config')
     ;
 
 // -- Local constants

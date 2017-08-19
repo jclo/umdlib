@@ -31,9 +31,8 @@ describe('Test UMDLib:', () => {
   });
 
   describe('Test UMDLib constructor and methods:', () => {
-    const o = UMDLib();
-
-    it('Expects UMDLib() to return an object.', () => {
+    const o = new UMDLib('name');
+    it('Expects new UMDLib("name") to return an object.', () => {
       expect(o).to.be.an('object');
     });
 

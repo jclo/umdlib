@@ -269,7 +269,7 @@ function _customizeGulp(locbaseumdlib, locbaseapp, locappname) {
  */
 /* eslint-disable no-loop-func */
 function _copySrcFiles(source, dest, files, app) {
-  const re = new RegExp('{{lib:name}}', 'g')
+  const re = new RegExp('UMDLib', 'g')
       ;
   let s
     ;
@@ -326,9 +326,9 @@ function _populate(locopts) {
         ['README.md', 'LICENSE.md', 'CHANGELOG.md', '.gitignore'],
       ]
       , dupFiles = ['index.js', '.travis.yml', 'eslint.sh', 'eslintrc-es5', 'eslintrc-es6', 'gulpfile.js']
-      , taskFiles = ['makejs.js', 'makedist.js', 'makelibwithoutdefinedroot.js']
-      , srcFiles = ['_header', '_footer', 'core.js']
-      , testFiles = ['main.js']
+      , srcFiles = _filter(fs.readdirSync(path.join(baseumdlib, src)))
+      , taskFiles = _filter(fs.readdirSync(path.join(baseumdlib, tasks)))
+      , testFiles = _filter(fs.readdirSync(path.join(baseumdlib, test)))
       ;
 
   // Check the folder app is empty:
@@ -369,10 +369,7 @@ function _populate(locopts) {
 
   // Copy test files:
   fs.mkdirSync(path.join(baseapp, test));
-  for (let i = 0; i < testFiles.length; i++) {
-    process.stdout.write(`  ${test}/${testFiles[i]}\n`);
-    _copyFile(path.join(baseumdlib, test, testFiles[i]), path.join(baseapp, test, testFiles[i]));
-  }
+  _copySrcFiles(path.join(baseumdlib, test), path.join(baseapp, test), testFiles, app);
 
   // process.stdout.write('Done. Enjoy!\n');
 }

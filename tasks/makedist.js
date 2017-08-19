@@ -54,7 +54,7 @@ gulp.task('copydev', function() {
 
 // Create the minified version:
 gulp.task('makeminified', function() {
-  return gulp.src(`${libdir}/${libname}.js`)
+  return gulp.src(`${libdir}/${libname.toLowerCase()}.js`)
     .pipe(uglify())
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
