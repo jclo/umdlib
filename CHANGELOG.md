@@ -4,7 +4,7 @@
 
   * Added a variation to the basic pattern,
   * Added headers to source files,
-  * ...,
+  * Release.
 
 
 ### 0.5.2 (August 19, 2017)
