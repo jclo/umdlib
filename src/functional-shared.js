@@ -1,5 +1,34 @@
 
-  // -- Private ----------------------------------------------------------------
+  /** **************************************************************************
+   *
+   * A ...
+   *
+   * functional-shared.js is built upon the Functional Shared Instantiation
+   * pattern. It returns an object by calling its constructor. It doesn't use
+   * the new keyword.
+   *
+   * This pattern allows the objects to share the same methods. It saves space
+   * in memory compared to the Functional Instantiation Pattern. So, it should
+   * be preferred to this last one.
+   *
+   * Private Functions:
+   *  . extend               adds new properties to an object,
+   *
+   * Public Methods:
+   *  . getString            returns a string,
+   *  . getArray             returns an array,
+   *
+   *
+   * @namespace    UMDLib
+   * @dependencies none
+   * @exports      -
+   * @author       -
+   * @since        0.0.0
+   * @version      -
+   * **************************************************************************/
+
+
+  // -- Private Functions ------------------------------------------------------
 
   /**
    * Extends object with new methods.
@@ -65,7 +94,7 @@
   UMDLib.VERSION = '{{lib:version}}';
 
 
-  // -- Public methods ---------------------------------------------------------
+  // -- Public Methods ---------------------------------------------------------
 
   objMethods = {
 

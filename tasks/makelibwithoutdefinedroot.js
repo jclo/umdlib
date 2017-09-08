@@ -21,6 +21,7 @@ const version = require('../package.json').version
     , dist    = config.dist
     , src     = config.src
     , lib     = config.libname
+    , name    = lib.replace(/\s+/g, '').toLowerCase()
     , license = config.license
     , destlib = `./_${lib}-${version}`
     ;
@@ -49,7 +50,7 @@ gulp.task('rmjsfiles', function() {
 // Create the full library:
 gulp.task('doemlib', function() {
   return gulp.src(src)
-    .pipe(concat(`${lib.toLowerCase()}.js`))
+    .pipe(concat(`${name}.js`))
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${lib}`))
     .pipe(replace('{{lib:version}}', version))

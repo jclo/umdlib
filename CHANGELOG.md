@@ -1,5 +1,12 @@
 ### HEAD
 
+### 0.5.3 (September 8, 2017)
+
+  * Added a variation to the basic pattern,
+  * Added headers to source files,
+  * ...,
+
+
 ### 0.5.2 (August 19, 2017)
 
   * Completed the library with new patterns functional, prototypal and pseudoclassical,

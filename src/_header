@@ -1,7 +1,8 @@
+// Based on UMD Lib template v{{template:version}}
 // ESLint declarations
 /* global define */
-/* eslint strict: ["error", "function"], one-var: 0 */
-/* eslint-disable no-param-reassign */
+/* eslint-disable one-var */
+/* eslint-disable strict, no-param-reassign */
 (function(root, factory) {
   'use strict';
 
@@ -24,5 +25,4 @@
   var UMDLib
     , previousUMDLib
     ;
-
-  /* eslint-enable no-param-reassign */
+  /* eslint-enable strict, no-param-reassign */

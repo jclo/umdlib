@@ -18,6 +18,7 @@ const config = require('./config')
 const dest   = config.libdir
     , src    = config.src
     , lib    = config.libname
+    , name   = lib.replace(/\s+/g, '').toLowerCase()
     , parent = config.parent
     ;
 
@@ -36,7 +37,7 @@ gulp.task('dolib', function() {
   return gulp.src(src)
     .pipe(replace('{{lib:name}}', lib))
     .pipe(replace('{{lib:parent}}', parent))
-    .pipe(concat(`${lib.toLowerCase()}.js`))
+    .pipe(concat(`${name}.js`))
     .pipe(gulp.dest(dest));
 });
 

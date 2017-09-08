@@ -24,6 +24,7 @@ const release   = require('../package.json').version
 const dist      = config.dist
     , libdir    = config.libdir
     , libname   = config.libname
+    , name      = libname.replace(/\s+/g, '').toLowerCase()
     , license   = config.license
     ;
 
@@ -45,7 +46,7 @@ gulp.task('skeleton', function() {
 
 // Copy the development version:
 gulp.task('copydev', function() {
-  return gulp.src(`${libdir}/${libname.toLowerCase()}.js`)
+  return gulp.src(`${libdir}/${name}.js`)
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
     .pipe(replace('{{lib:version}}', release))
@@ -54,12 +55,12 @@ gulp.task('copydev', function() {
 
 // Create the minified version:
 gulp.task('makeminified', function() {
-  return gulp.src(`${libdir}/${libname.toLowerCase()}.js`)
+  return gulp.src(`${libdir}/${name}.js`)
     .pipe(uglify())
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
     .pipe(replace('{{lib:version}}', release))
-    .pipe(concat(`${libname.toLowerCase()}.min.js`))
+    .pipe(concat(`${name}.min.js`))
     .pipe(gulp.dest(dist));
 });
 

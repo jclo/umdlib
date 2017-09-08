@@ -1,5 +1,27 @@
 
-  // -- Public -----------------------------------------------------------------
+  /** **************************************************************************
+   *
+   * A ...
+   *
+   * pseudoclassical.js is built upon the Pseudoclassical Instantiation pattern.
+   * It returns an object by calling its constructor with the new
+   * keyword.
+   *
+   * Private Functions:
+   *  . ...                  ...,
+   *
+   * Public Methods:
+   *  . getString            returns a string,
+   *  . getArray             returns an array,
+   *
+   *
+   * @namespace    UMDLib
+   * @dependencies none
+   * @exports      -
+   * @author       -
+   * @since        0.0.0
+   * @version      -
+   * **************************************************************************/
 
   /**
    * Initializes the object.
@@ -37,7 +59,7 @@
   UMDLib.VERSION = '{{lib:version}}';
 
 
-  // -- Public methods ---------------------------------------------------------
+  // -- Public Methods ---------------------------------------------------------
 
   UMDLib.prototype = {
 

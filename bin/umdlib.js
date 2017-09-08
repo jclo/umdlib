@@ -269,7 +269,8 @@ function _customizeGulp(locbaseumdlib, locbaseapp, locappname) {
  */
 /* eslint-disable no-loop-func */
 function _copySrcFiles(source, dest, files, app) {
-  const re = new RegExp('UMDLib', 'g')
+  const re  = new RegExp('UMDLib', 'g')
+      , re2 = new RegExp('{{template:version}}')
       ;
   let s
     ;
@@ -278,7 +279,7 @@ function _copySrcFiles(source, dest, files, app) {
     // Read source file:
     fs.readFile(path.join(source, files[i]), 'utf8', (error, data) => {
       if (error) { throw error; }
-      s = data.replace(re, app);
+      s = data.replace(re, app).replace(re2, version);
       fs.writeFile(path.join(dest, files[i]), s, 'utf8', (err) => {
         if (err) { throw err; }
         process.stdout.write(`  ${src}/${files[i]}\n`);

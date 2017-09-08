@@ -1,5 +1,27 @@
 
-  // -- Public -----------------------------------------------------------------
+  /** **************************************************************************
+   *
+   * A ...
+   *
+   * functional.js is built upon the Functional Instantiation pattern. It
+   * returns an object by calling its constructor. It doesn't use the new
+   * keyword.
+   *
+   * Private Functions:
+   *  . ...                  ...,
+   *
+   * Public Methods:
+   *  . getString            returns a string,
+   *  . getArray             returns an array,
+   *
+   *
+   * @namespace    UMDLib
+   * @dependencies none
+   * @exports      -
+   * @author       -
+   * @since        0.0.0
+   * @version      -
+   * **************************************************************************/
   // Create an empty object:
   var obj = {};
 
@@ -36,7 +58,7 @@
   UMDLib.VERSION = '{{lib:version}}';
 
 
-  // -- Public methods ---------------------------------------------------------
+  // -- Public Methods ---------------------------------------------------------
 
   /**
    * Returns a string.

@@ -1,5 +1,28 @@
 
-  // -- Public -----------------------------------------------------------------
+  /** **************************************************************************
+   *
+   * A ...
+   *
+   * pseudoclassical-auto.js is built upon a variation of the Pseudoclassical
+   * Instantiation pattern. The object is instantiated by the new keyword
+   * included in the constructor. The caller just needs to call the
+   * constructor without the new keyword to get in return the object.
+   *
+   * Private Functions:
+   *  . ...                  ...,
+   *
+   * Public Methods:
+   *  . getString            returns a string,
+   *  . getArray             returns an array,
+   *
+   *
+   * @namespace    UMDLib
+   * @dependencies none
+   * @exports      -
+   * @author       -
+   * @since        0.0.0
+   * @version      -
+   * **************************************************************************/
 
   /**
    * Creates and returns the object UMDLib.
@@ -38,7 +61,7 @@
   UMDLib.VERSION = '{{lib:version}}';
 
 
-  // -- Public methods ---------------------------------------------------------
+  // -- Public Methods ---------------------------------------------------------
 
   UMDLib.prototype = {
 

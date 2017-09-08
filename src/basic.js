@@ -1,14 +1,32 @@
-  /**
-   * Defines properties for the UMDLib object.
+
+  /** **************************************************************************
    *
-   * @namespace  UMDLib
-   */
+   * A ...
+   *
+   * basic.js is just a literal object that contains a set of functions. It
+   * can't be intantiated.
+   *
+   * Private Functions:
+   *  . ...                  ...,
+   *
+   * Public Functions:
+   *  . getString            returns a string,
+   *  . getArray             returns an array,
+   *
+   *
+   * @namespace    UMDLib
+   * @dependencies none
+   * @exports      -
+   * @author       -
+   * @since        0.0.0
+   * @version      -
+   * **************************************************************************/
   UMDLib = {
 
     /**
      * Returns a string.
      *
-     * @method ()
+     * @function ()
      * @public
      * @param {}           -,
      * @returns {String}   returns a string,
@@ -21,7 +39,7 @@
     /**
      * Returns an array.
      *
-     * @method ()
+     * @function ()
      * @public
      * @param {}          -,
      * @returns {Array}   returns an array,

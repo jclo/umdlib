@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -26,7 +26,13 @@
     "UMD",
     "library",
     "template",
-    "boilerplate"
+    "boilerplate",
+    "instantiation patterns",
+    "functional instantiation",
+    "functional-shared instantiation",
+    "prototypal instantiation",
+    "pseudoclassical instantiation",
+    "pseudoclassical auto instantiation"
   ],
   "author": {
     "name": "jclo",
@@ -43,7 +49,7 @@
     "path": "0.12.7"
   },
   "devDependencies": {
-    "chai": "4.1.1",
+    "chai": "4.1.2",
     "coveralls": "2.13.1",
     "cross-env": "5.0.5",
     "del": "3.0.0",

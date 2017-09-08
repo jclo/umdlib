@@ -1,16 +1,16 @@
-
   /** **************************************************************************
    *
    * A ...
    *
-   * prototypal.js is built upon the Prototypal Instantiation pattern. It
-   * returns an object by calling its constructor. It doesn't use the new
-   * keyword.
+   * basicplus.js is based on a variation of the basic.js pattern. The
+   * properties are added dynamically. Thus, it can be divided in several
+   * chunks of properties and the build can produces several versions of the
+   * library by including or not some chunks.
    *
    * Private Functions:
    *  . ...                  ...,
    *
-   * Public Methods:
+   * Public Functions:
    *  . getString            returns a string,
    *  . getArray             returns an array,
    *
@@ -22,23 +22,39 @@
    * @since        0.0.0
    * @version      -
    * **************************************************************************/
-  var methods
-    ;
+
+
+  // -- Private Functions ------------------------------------------------------
 
   /**
-   * Creates and returns the object UMDLib.
-   * (Prototypal Instantiation Pattern)
+   * Extends object with new methods.
    *
-   * @constructor ()
-   * @public
-   * @param {arg1}          -,
-   * @returns {Object}  returns the UMDLib object,
+   * Nota: this function mutates object.
+   *
+   * @function (arg1, arg2)
+   * @private
+   * @param {Object}    the object to extend,
+   * @param {Object}    an object containing a set of methods,
+   * @returns {}        -,
    * @since 0.0.0
    */
-  UMDLib = function(name) {
-    var obj = Object.create(methods);
-    obj.name = name;
-    return obj;
+  /* eslint-disable no-param-reassign */
+  var extend = function(object, methods) {
+    var keys = Object.keys(methods)
+      , i
+      ;
+
+    for (i = 0; i < keys.length; i++) {
+      object[keys[i]] = methods[keys[i]];
+    }
+  }; /* eslint-enable no-param-reassign */
+
+
+  // -- Public -----------------------------------------------------------------
+
+  // Initializes the object:
+  UMDLib = {
+   //
   };
 
   // Saves the previous value of the library variable, so that it can be
@@ -59,14 +75,13 @@
   UMDLib.VERSION = '{{lib:version}}';
 
 
-  // -- Public Methods ---------------------------------------------------------
-
-  methods = {
+  // -- Public Functions -------------------------------------------------------
+  extend(UMDLib, {
 
     /**
      * Returns a string.
      *
-     * @method ()
+     * @function ()
      * @public
      * @param {}           -,
      * @returns {String}   returns a string,
@@ -79,7 +94,7 @@
     /**
      * Returns an array.
      *
-     * @method ()
+     * @function ()
      * @public
      * @param {}          -,
      * @returns {Array}   returns an array,
@@ -88,4 +103,4 @@
     getArray: function() {
       return [1, 2, 3];
     }
-  };
+  });
