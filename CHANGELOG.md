@@ -3,7 +3,7 @@
 ### 0.6.0 (January 20, 2018)
 
   * Updated the project to comply with ESLint 4.x,
-  * ...,
+  * Release.
 
 
 ### 0.5.3 (September 8, 2017)
