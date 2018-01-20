@@ -1,7 +1,7 @@
 // Based on UMD Lib template v{{template:version}}
 // ESLint declarations
 /* global define */
-/* eslint-disable one-var */
+/* eslint-disable one-var, semi-style */
 /* eslint-disable strict, no-param-reassign */
 (function(root, factory) {
   'use strict';

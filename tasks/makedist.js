@@ -1,4 +1,5 @@
-/* eslint one-var: 0, prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0 */
+/* eslint one-var: 0, prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0,
+  semi-style: 0 */
 
 'use strict';
 
@@ -21,11 +22,11 @@ const release   = require('../package.json').version
     ;
 
 // -- Local constants
-const dist      = config.dist
-    , libdir    = config.libdir
-    , libname   = config.libname
-    , name      = libname.replace(/\s+/g, '').toLowerCase()
-    , license   = config.license
+const { dist }    = config
+    , { libdir }  = config
+    , { libname } = config
+    , name        = libname.replace(/\s+/g, '').toLowerCase()
+    , { license } = config
     ;
 
 // -- Local variables
@@ -66,7 +67,9 @@ gulp.task('makeminified', function() {
 
 // -- Gulp Main Task:
 gulp.task('makedist', function(callback) {
-  runSequence('deldist',
+  runSequence(
+    'deldist',
     ['skeleton', 'copydev', 'makeminified'],
-    callback);
+    callback,
+  );
 });

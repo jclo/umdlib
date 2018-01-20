@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.6.0 (January 20, 2018)
+
+  * Updated the project to comply with ESLint 4.x,
+  * ...,
+
+
 ### 0.5.3 (September 8, 2017)
 
   * Added a variation to the basic pattern,
