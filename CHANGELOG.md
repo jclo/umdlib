@@ -3,7 +3,7 @@
 ### 0.6.1 (April 7, 2018)
 
   * Improved the management of 'use strict',
-  * ...,
+  * Release.
 
 
 ### 0.6.0 (January 20, 2018)
