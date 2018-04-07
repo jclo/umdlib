@@ -45,6 +45,8 @@ gulp.task('delcore', function() {
 // Creates the indented content:
 gulp.task('docore', function() {
   return gulp.src(core)
+    // remove the extra 'use strict':
+    .pipe(replace(/\n'use strict';\n/, ''))
     // indent the first line with 2 spaces:
     .pipe(replace(/^/g, '  '))
     // indent each other lines with 2 spaces:

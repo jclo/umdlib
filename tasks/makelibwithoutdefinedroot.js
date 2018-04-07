@@ -54,7 +54,7 @@ gulp.task('doemlib', function() {
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${lib}`))
     .pipe(replace('{{lib:version}}', version))
-    .pipe(replace('\'use strict\';', '//  \'use strict\';'))
+    .pipe(replace(/  'use strict';\n\n/g, ''))
     .pipe(gulp.dest(destlib));
 });
 

@@ -25,7 +25,9 @@
  * @since        0.0.0
  * @version      -
  * ************************************************************************ */
-/* eslint-disable strict */
+/* eslint-disable one-var, semi-style */
+
+'use strict';
 
 
 // -- Private Functions ------------------------------------------------------
@@ -43,22 +45,18 @@
  * @since 0.0.0
  */
 /* eslint-disable no-param-reassign */
-var extend = function(object, methods) {
-  var keys = Object.keys(methods)
+extend = function(object, meth) {
+  var keys = Object.keys(meth)
     , i
     ;
 
   for (i = 0; i < keys.length; i++) {
-    object[keys[i]] = methods[keys[i]];
+    object[keys[i]] = meth[keys[i]];
   }
 }; /* eslint-enable no-param-reassign */
 
 
 // -- Public -----------------------------------------------------------------
-// Create an empty object:
-var obj = {}
-  , objMethods
-  ;
 
 /**
  * Returns the object UMDLib.
@@ -71,8 +69,9 @@ var obj = {}
  * @since 0.0.0
  */
 UMDLib = function(name) {
+  var obj = {};
   obj.name = name;
-  extend(obj, objMethods);
+  extend(obj, methods);
   return obj;
 };
 
@@ -96,7 +95,7 @@ UMDLib.VERSION = '{{lib:version}}';
 
 // -- Public Methods ---------------------------------------------------------
 
-objMethods = {
+methods = {
 
   /**
    * Returns a string.
@@ -124,4 +123,4 @@ objMethods = {
     return [1, 2, 3];
   }
 };
-/* eslint-enable strict */
+/* eslint-enable one-var, semi-style */

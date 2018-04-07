@@ -22,7 +22,9 @@
  * @since        0.0.0
  * @version      -
  * ************************************************************************ */
-/* eslint-disable strict */
+/* - */
+
+'use strict';
 
 /**
  * Creates and returns the object UMDLib.
@@ -91,4 +93,4 @@ UMDLib.prototype = {
     return [1, 2, 3];
   }
 };
-/* eslint-enable strict */
+/* - */

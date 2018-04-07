@@ -1,8 +1,8 @@
 // Based on UMD Lib template v{{template:version}}
 // ESLint declarations
 /* global define */
+/* eslint strict: ["error", "function"] */
 /* eslint-disable one-var, semi-style */
-/* eslint-disable strict, no-param-reassign */
 (function(root, factory) {
   'use strict';
 
@@ -17,12 +17,16 @@
     module.exports = factory(root);
   } else {
     // Browser globals.
+    /* eslint-disable no-param-reassign */
     root.UMDLib = factory(root);
+    /* eslint-enable no-param-reassign */
   }
 }({{lib:parent}}, function(root) {
   'use strict';
 
   var UMDLib
     , previousUMDLib
+    , obj = {} // required for 'functional' pattern,
+    , extend // required for 'basicplus' and 'functional-shared' patterns,
+    , methods // required for 'functionnal-shared' and 'prototypal' patterns,
     ;
-  /* eslint-enable strict, no-param-reassign */

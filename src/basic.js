@@ -20,7 +20,10 @@
  * @since        0.0.0
  * @version      -
  * ************************************************************************ */
-/* eslint-disable strict */
+/* - */
+
+'use strict';
+
 UMDLib = {
 
   /**
@@ -66,4 +69,4 @@ UMDLib.noConflict = function() {
 
 // Current version of the library:
 UMDLib.VERSION = '{{lib:version}}';
-/* eslint-enable strict */
+/* - */

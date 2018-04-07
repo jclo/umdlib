@@ -21,9 +21,9 @@
  * @since        0.0.0
  * @version      -
  * ************************************************************************ */
-/* eslint-disable strict */
-// Create an empty object:
-var obj = {};
+/* - */
+
+'use strict';
 
 /**
  * Returns the object UMDLib.
@@ -85,4 +85,4 @@ obj.getString = function() {
 obj.getArray = function() {
   return [1, 2, 3];
 };
-/* eslint-enable strict */
+/* - */

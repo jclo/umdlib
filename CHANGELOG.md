@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.6.1 (April 7, 2018)
+
+  * Improved the management of 'use strict',
+  * ...,
+
+
 ### 0.6.0 (January 20, 2018)
 
   * Updated the project to comply with ESLint 4.x,
