@@ -5,7 +5,7 @@
   * Added Gitbook for displaying the documentation,
   * Added a script to create a private NPM package,
   * Updated the dependencies,
-  * ...,
+  * Release.
 
 
 ### 0.6.1 (April 7, 2018)
