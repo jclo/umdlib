@@ -7,6 +7,7 @@ module.exports = {
   libdir: './lib',
   libname: 'UMDLib',
   parent: 'this',
+  noparent: '-noparent',
   // These are the Javascript files required to build the library. Choose one
   // pattern among these ones. The library can include only the header file,
   // a core file and the footer file. The files 'basic.js', 'functional.js',

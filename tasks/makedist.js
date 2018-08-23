@@ -14,19 +14,20 @@ const del         = require('del')
     ;
 
 // -- Local modules
-const config  = require('./config')
+const config = require('./config')
     ;
 
 // -- Release version:
-const release   = require('../package.json').version
+const release = require('../package.json').version
     ;
 
 // -- Local constants
-const { dist }    = config
-    , { libdir }  = config
-    , { libname } = config
-    , name        = libname.replace(/\s+/g, '').toLowerCase()
-    , { license } = config
+const { dist }     = config
+    , { libdir }   = config
+    , { libname }  = config
+    , { noparent } = config
+    , name         = libname.replace(/\s+/g, '').toLowerCase()
+    , { license }  = config
     ;
 
 // -- Local variables
@@ -54,6 +55,16 @@ gulp.task('copydev', function() {
     .pipe(gulp.dest(dist));
 });
 
+// Copy the development version without parent:
+gulp.task('makenoparentlib', function() {
+  return gulp.src(`${libdir}/${name}${noparent}.js`)
+    .pipe(header(license))
+    .pipe(replace('{{lib:name}}', `${libname}`))
+    .pipe(replace('{{lib:version}}', release))
+    .pipe(replace(/ {2}'use strict';\n\n/g, ''))
+    .pipe(gulp.dest(dist));
+});
+
 // Create the minified version:
 gulp.task('makeminified', function() {
   return gulp.src(`${libdir}/${name}.js`)
@@ -69,7 +80,7 @@ gulp.task('makeminified', function() {
 gulp.task('makedist', function(callback) {
   runSequence(
     'deldist',
-    ['skeleton', 'copydev', 'makeminified'],
+    ['skeleton', 'copydev', 'makenoparentlib', 'makeminified'],
     callback,
   );
 });

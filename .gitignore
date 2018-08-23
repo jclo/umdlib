@@ -1,10 +1,11 @@
-__trash
 .DS_Store
+__trash
 _dist
-_UMDLib-*
-node_modules
-coverage
-.tern-project
 .nyc_output
+coverage
+docs/_book
+node_modules
+private_repo
+.tern-project
 .eslintrc
 TODOLIST.md
