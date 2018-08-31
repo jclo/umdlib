@@ -20,8 +20,6 @@ const { dist } = config
 
 // -- Local variables
 
-// private_repo/umdlib/0.0.0/_dist
-
 // -- Gulp Tasks
 gulp.task('makeprivatepackage', function() {
   fs.readFile('./package.json', 'utf8', function(error, data) {

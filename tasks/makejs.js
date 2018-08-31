@@ -17,14 +17,15 @@ const config = require('./config')
     ;
 
 // -- Local constants
-const dest       = config.libdir
-    , { src }    = config
-    , lib        = config.libname
-    , name       = lib.replace(/\s+/g, '').toLowerCase()
-    , { parent } = config
-    , head       = src[0]
-    , core       = src.slice(1, -1)
-    , foot       = src[src.length - 1]
+const dest         = config.libdir
+    , { src }      = config
+    , lib          = config.libname
+    , name         = lib.replace(/\s+/g, '').toLowerCase()
+    , { parent }   = config
+    , { noparent } = config
+    , head         = src[0]
+    , core         = src.slice(1, -1)
+    , foot         = src[src.length - 1]
     ;
 
 // -- Local variables
@@ -64,13 +65,13 @@ gulp.task('docore', function() {
 gulp.task('dolibnoparent', function() {
   return gulp.src([head, `${dest}/core.js`, foot])
     .pipe(replace('{{lib:name}}', lib))
-    .pipe(concat(`${name}-noparent.js`))
+    .pipe(concat(`${name}${noparent}.js`))
     .pipe(gulp.dest(dest));
 });
 
 // Creates the library:
 gulp.task('dolib', function() {
-  return gulp.src(`${dest}/${name}-noparent.js`)
+  return gulp.src(`${dest}/${name}${noparent}.js`)
     .pipe(replace('{{lib:parent}}', parent))
     .pipe(concat(`${name}.js`))
     .pipe(gulp.dest(dest));

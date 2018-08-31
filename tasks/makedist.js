@@ -15,10 +15,7 @@ const del         = require('del')
 
 // -- Local modules
 const config = require('./config')
-    ;
-
-// -- Release version:
-const release = require('../package.json').version
+    , pack   = require('../package.json')
     ;
 
 // -- Local constants
@@ -51,7 +48,11 @@ gulp.task('copydev', function() {
   return gulp.src(`${libdir}/${name}.js`)
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
-    .pipe(replace('{{lib:version}}', release))
+    .pipe(replace('{{lib:version}}', pack.version))
+    .pipe(replace('{{lib:description}}', pack.description))
+    .pipe(replace('{{lib:author}}', pack.author.name))
+    .pipe(replace('{{lib:email}}', pack.author.email))
+    .pipe(replace('{{lib:url}}', pack.author.url))
     .pipe(gulp.dest(dist));
 });
 
@@ -60,7 +61,11 @@ gulp.task('makenoparentlib', function() {
   return gulp.src(`${libdir}/${name}${noparent}.js`)
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
-    .pipe(replace('{{lib:version}}', release))
+    .pipe(replace('{{lib:version}}', pack.version))
+    .pipe(replace('{{lib:description}}', pack.description))
+    .pipe(replace('{{lib:author}}', pack.author.name))
+    .pipe(replace('{{lib:email}}', pack.author.email))
+    .pipe(replace('{{lib:url}}', pack.author.url))
     .pipe(replace(/ {2}'use strict';\n\n/g, ''))
     .pipe(gulp.dest(dist));
 });
@@ -71,7 +76,11 @@ gulp.task('makeminified', function() {
     .pipe(uglify())
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
-    .pipe(replace('{{lib:version}}', release))
+    .pipe(replace('{{lib:version}}', pack.version))
+    .pipe(replace('{{lib:description}}', pack.description))
+    .pipe(replace('{{lib:author}}', pack.author.name))
+    .pipe(replace('{{lib:email}}', pack.author.email))
+    .pipe(replace('{{lib:url}}', pack.author.url))
     .pipe(concat(`${name}.min.js`))
     .pipe(gulp.dest(dist));
 });

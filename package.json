@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -10,16 +10,11 @@
     "build": "gulp build",
     "watch": "gulp watch",
     "makedist": "gulp",
-
-
     "makeprivate": "gulp makeprivatepackage && sh tasks/compress.sh $npm_package_name $npm_package_version",
-
-
-
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov _mocha ./test/main.js",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov mocha ./test/main.js",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "display-coverage": "opener ./coverage/lcov-report/index.html",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "report": "nyc report",
     "precommit": "npm run makedist && npm run test && npm run check-coverage && npm run report",
     "doc": "cd docs && ../node_modules/.bin/gitbook --port 9999 serve"
@@ -72,8 +67,8 @@
     "gulp-uglify": "3.0.1",
     "husky": "0.14.3",
     "mocha": "5.2.0",
-    "nyc": "12.0.2",
-    "opener": "1.5.0",
+    "nyc": "13.0.1",
+    "opener": "1.5.1",
     "require-dir": "1.0.0",
     "run-sequence": "2.2.1"
   },

@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.7.1 (August 31, 2008)
+
+  * Made a few small build enhancements,
+  * ...,
+
+
 ### 0.7.0 (August 23, 2018)
 
   * Added Gitbook for displaying the documentation,
