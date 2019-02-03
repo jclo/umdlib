@@ -160,6 +160,6 @@ Enjoy!
 [download-url]: https://www.npmjs.com/package/umdlib
 [travis-url]: https://travis-ci.org/jclo/umdlib
 [coveralls-url]: https://coveralls.io/github/jclo/umdlib?branch=master
-[dependencies-url]: https://david-dm.org/jclo/umdlib#info=dependencies
-[devdependencies-url]: https://david-dm.org/jclo/umdlib#info=devDependencies
+[dependencies-url]: https://david-dm.org/jclo/umdlib
+[devdependencies-url]: https://david-dm.org/jclo/umdlib?type=dev
 [license-url]: http://opensource.org/licenses/MIT

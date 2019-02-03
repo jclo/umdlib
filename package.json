@@ -17,7 +17,6 @@
     "display-coverage": "opener ./coverage/lcov-report/index.html",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "report": "nyc report",
-    "precommit": "npm run makedist && npm run test && npm run check-coverage && npm run report",
     "doc": "vuepress dev docs"
   },
   "repository": {
@@ -71,5 +70,10 @@
     "nyc": "13.2.0",
     "opener": "1.5.1"
   },
-  "private": false
+  "private": false,
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run makedist && npm run test && npm run check-coverage && npm run report"
+    }
+  }
 }

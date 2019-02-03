@@ -4,7 +4,7 @@
 
   * Updated the Gulp's tasks to comply with Gulp 4,
   * Replaced Gitbook by VuePress for displaying the documentation,
-  * ...,
+  * Release.
 
 
 ### 0.7.1 (August 31, 2008)
