@@ -1,5 +1,12 @@
 ### HEAD
 
+### 0.8.0 (February 3, 2019)
+
+  * Updated the Gulp's tasks to comply with Gulp 4,
+  * Replaced Gitbook by VuePress for displaying the documentation,
+  * ...,
+
+
 ### 0.7.1 (August 31, 2008)
 
   * Made a few small build enhancements,

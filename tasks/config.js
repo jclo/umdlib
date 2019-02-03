@@ -29,7 +29,7 @@ module.exports = {
     ' *',
     ' * {{lib:description}}.',
     ' * (you can download it from npm or github repositories)',
-    ' * Copyright (c) 2018 {{lib:author}} <{{lib:email}}> ({{lib:url}}).',
+    ' * Copyright (c) 2019 {{lib:author}} <{{lib:email}}> ({{lib:url}}).',
     ' * Released under the MIT license. You may obtain a copy of the License',
     ' * at: http://www.opensource.org/licenses/mit-license.php).',
     ' * ************************************************************************** */',

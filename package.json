@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -9,15 +9,16 @@
   "scripts": {
     "build": "gulp build",
     "watch": "gulp watch",
-    "makedist": "gulp",
-    "makeprivate": "gulp makeprivatepackage && sh tasks/compress.sh $npm_package_name $npm_package_version",
+    "makedist": "gulp makedist",
+    "makeprivate": "gulp makeprivate && sh tasks/compress.sh $npm_package_name $npm_package_version",
+    "makelib": "gulp && sh tasks/compress.sh $npm_package_name $npm_package_version",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov mocha ./test/main.js",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "display-coverage": "opener ./coverage/lcov-report/index.html",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "report": "nyc report",
     "precommit": "npm run makedist && npm run test && npm run check-coverage && npm run report",
-    "doc": "cd docs && ../node_modules/.bin/gitbook --port 9999 serve"
+    "doc": "vuepress dev docs"
   },
   "repository": {
     "type": "git",
@@ -48,29 +49,27 @@
   "homepage": "https://github.com/jclo/umdlib",
   "dependencies": {
     "nopt": "4.0.1",
-    "path": "0.12.7"
+    "path": "0.12.7",
+    "vuepress": "0.14.8"
   },
   "devDependencies": {
-    "chai": "4.1.2",
+    "chai": "4.2.0",
     "coveralls": "3.0.2",
     "cross-env": "5.2.0",
     "del": "3.0.0",
-    "eslint": "5.4.0",
+    "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
-    "eslint-plugin-import": "2.14.0",
-    "gitbook-cli": "2.3.2",
-    "gulp": "3.9.1",
+    "eslint-plugin-import": "2.16.0",
+    "gulp": "4.0.0",
     "gulp-concat": "2.6.1",
-    "gulp-footer": "2.0.1",
-    "gulp-header": "2.0.5",
+    "gulp-footer": "2.0.2",
+    "gulp-header": "2.0.7",
     "gulp-replace": "1.0.0",
     "gulp-uglify": "3.0.1",
-    "husky": "0.14.3",
+    "husky": "1.3.1",
     "mocha": "5.2.0",
-    "nyc": "13.0.1",
-    "opener": "1.5.1",
-    "require-dir": "1.0.0",
-    "run-sequence": "2.2.1"
+    "nyc": "13.2.0",
+    "opener": "1.5.1"
   },
   "private": false
 }

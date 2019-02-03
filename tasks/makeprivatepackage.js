@@ -4,24 +4,30 @@
 'use strict';
 
 // -- Node modules
-const fs   = require('fs')
-    , gulp = require('gulp')
+const { series } = require('gulp')
+    , fs         = require('fs')
     ;
+
 
 // -- Local modules
 const config  = require('./config')
     ;
 
+
 // -- Release version:
+
 
 // -- Local constants
 const { dist } = config
     ;
 
+
 // -- Local variables
 
-// -- Gulp Tasks
-gulp.task('makeprivatepackage', function() {
+
+// -- Gulp Private Tasks
+
+function makeprivatepackage(cb) {
   fs.readFile('./package.json', 'utf8', function(error, data) {
     if (error) { throw error; }
     const obj = JSON.parse(data);
@@ -36,6 +42,12 @@ gulp.task('makeprivatepackage', function() {
       if (err) {
         throw err;
       }
+      cb();
     });
   });
-});
+}
+
+
+// -- Gulp Public Task(s)
+
+module.exports = series(makeprivatepackage);

@@ -3,7 +3,7 @@ __trash
 _dist
 .nyc_output
 coverage
-docs/_book
+docs/.vuepress/dist
 node_modules
 private_repo
 .tern-project
