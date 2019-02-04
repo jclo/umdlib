@@ -3,7 +3,7 @@
 ### 0.8.1 (February 4, 2019)
 
   * Fixed some issues that prevent copying VuePress config file,
-  * ...,
+  * Release.
 
 
 ### 0.8.0 (February 3, 2019)
