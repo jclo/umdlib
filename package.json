@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {

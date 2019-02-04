@@ -4,7 +4,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2018 jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr)
+ * Copyright (c) 2019 jclo <jclo@mobilabs.fr> (http://www.mobilabs.fr)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +76,7 @@ const readme = [
 const license = [
   'The MIT License (MIT)',
   '',
-  'Copyright (c) 2018 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
+  'Copyright (c) 2019 John Doe <jdo@johndoe.com> (http://www.johndoe.com)',
   '',
   'Permission is hereby granted, free of charge, to any person obtaining a copy',
   'of this software and associated documentation files (the "Software"), to deal',
@@ -176,23 +176,30 @@ function _copyFileAndReplace(source, dest, app) {
 /**
  * Recursively copies source to destination.
  *
- * @function (arg1, arg2, arg3, arg4, arg5)
+ * @function (arg1, arg2, arg3, arg4, arg5, arg6)
  * @private
  * @param {String}    the source folder/file,
  * @param {String}    the destination folder/file,
  * @param {String}    the name of the library,
  * @param {String}    the relative path,
  * @param {Array}     the files not to copy,
+ * @param {Boolean}   add or not chached files,
  * @returns {}        -,
  */
-function _copyRecursiveSync(source, dest, app, destpath, excluFiles) {
+function _copyRecursiveSync(source, dest, app, destpath, excluFiles, addCachedFiles) {
   if (fs.statSync(source).isDirectory()) {
     fs.mkdirSync(dest);
-    const files = _filter(fs.readdirSync(source));
+
+    let files;
+    if (addCachedFiles) {
+      files = fs.readdirSync(source);
+    } else {
+      files = _filter(fs.readdirSync(source));
+    }
     for (let i = 0; i < files.length; i++) {
       if (fs.statSync(`${source}/${files[i]}`).isDirectory()) {
         if (!excluFiles || excluFiles.indexOf(files[i]) === -1) {
-          _copyRecursiveSync(`${source}/${files[i]}`, `${dest}/${files[i]}`, app, destpath, excluFiles);
+          _copyRecursiveSync(`${source}/${files[i]}`, `${dest}/${files[i]}`, app, destpath, excluFiles, addCachedFiles);
         }
       } else {
         const lopath = destpath ? dest.replace(destpath, '') : dest;
@@ -272,9 +279,13 @@ function _customizeApp(locbaseumdlib, locbaseapp, locappname) {
     pack.bugs = obj.bugs;
     pack.bugs.url = 'https://github.com/author/libname/issues';
     pack.homepage = 'https://github.com/author/libname';
-    pack.dependencies = {};
+    pack.dependencies = obj.dependencies;
     pack.devDependencies = obj.devDependencies;
     pack.private = obj.private;
+    pack.husky = obj.husky;
+
+    delete pack.dependencies.nopt;
+    delete pack.dependencies.path;
 
     // Write the updated package.json:
     fs.writeFile(path.join(locbaseapp, npm), JSON.stringify(pack, null, 2), 'utf8', (err) => {
@@ -364,7 +375,7 @@ function _populate(locopts) {
   _copyRecursiveSync(path.join(baseumdlib, test), path.join(baseapp, test), app, `${baseapp}/`);
 
   // Copy Doc Files:
-  _copyRecursiveSync(path.join(baseumdlib, docs), path.join(baseapp, docs), app, `${baseapp}/`, exludeDocs);
+  _copyRecursiveSync(path.join(baseumdlib, docs), path.join(baseapp, docs), app, `${baseapp}/`, exludeDocs, true);
 
   // Copy Source Files:
   _copyRecursiveSync(path.join(baseumdlib, src), path.join(baseapp, src), app, `${baseapp}/`, excluSrc);
