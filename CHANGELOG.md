@@ -5,7 +5,7 @@
   * Updated the build by removing the eslint instruction "prefer-arrow-callback",
   * Made some cosmetic modifications,
   * Updated that Gulp task makeprivatepackage.js,
-  * ...,
+  * Release.
 
 
 ### 0.8.1 (February 4, 2019)
