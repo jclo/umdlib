@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -10,8 +10,8 @@
     "build": "gulp build",
     "watch": "gulp watch",
     "makedist": "gulp makedist",
-    "makeprivate": "gulp makeprivate && sh tasks/compress.sh $npm_package_name $npm_package_version",
-    "makelib": "gulp && sh tasks/compress.sh $npm_package_name $npm_package_version",
+    "makeprivate": "gulp makeprivate && sh tasks/compress.sh ${npm_package_name} ${npm_package_version}",
+    "makelib": "gulp build && gulp makedist && gulp makeprivate && sh tasks/compress.sh ${npm_package_name} ${npm_package_version}",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov mocha ./test/main.js",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "display-coverage": "opener ./coverage/lcov-report/index.html",
@@ -73,7 +73,7 @@
   "private": false,
   "husky": {
     "hooks": {
-      "pre-commit": "npm run makedist && npm run test && npm run check-coverage && npm run report"
+      "pre-commit": "npm run build && npm run makedist && npm run test && npm run check-coverage && npm run report"
     }
   }
 }

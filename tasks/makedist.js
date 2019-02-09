@@ -1,15 +1,15 @@
-/* eslint one-var: 0, prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0,
-  semi-style: 0, object-curly-newline: 0 */
+/* eslint one-var: 0, import/no-extraneous-dependencies: 0, semi-style: 0,
+  object-curly-newline: 0 */
 
 'use strict';
 
 // -- Node modules
 const { src, dest, series, parallel } = require('gulp')
-    , del         = require('del')
-    , concat      = require('gulp-concat')
-    , header      = require('gulp-header')
-    , replace     = require('gulp-replace')
-    , uglify      = require('gulp-uglify')
+    , del     = require('del')
+    , concat  = require('gulp-concat')
+    , header  = require('gulp-header')
+    , replace = require('gulp-replace')
+    , uglify  = require('gulp-uglify')
     ;
 
 
@@ -35,9 +35,9 @@ const { dist }     = config
 // -- Gulp Private Tasks
 
 // Removes the previous dist.
-function deldist(cb) {
+function deldist(done) {
   del.sync(dist);
-  cb();
+  done();
 }
 
 // Copies README and LICENSE.
@@ -60,7 +60,7 @@ function copydev() {
 }
 
 // Copies the development version without parent.
-function maakenoparentlib() {
+function makenoparentlib() {
   return src(`${libdir}/${name}${noparent}.js`)
     .pipe(header(license))
     .pipe(replace('{{lib:name}}', `${libname}`))
@@ -93,5 +93,5 @@ function makeminified() {
 
 module.exports = series(
   deldist,
-  parallel(doskeleton, copydev, maakenoparentlib, makeminified),
+  parallel(doskeleton, copydev, makenoparentlib, makeminified),
 );

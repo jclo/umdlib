@@ -1,5 +1,13 @@
 ### HEAD
 
+### 0.8.2 (February 4, 2019)
+
+  * Updated the build by removing the eslint instruction "prefer-arrow-callback",
+  * Made some cosmetic modifications,
+  * Updated that Gulp task makeprivatepackage.js,
+  * ...,
+
+
 ### 0.8.1 (February 4, 2019)
 
   * Fixed some issues that prevent copying VuePress config file,
