@@ -7,5 +7,4 @@ docs/.vuepress/dist
 node_modules
 private_repo
 .tern-project
-.eslintrc
 TODOLIST.md

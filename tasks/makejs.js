@@ -35,9 +35,9 @@ const destination  = config.libdir
 // -- Gulp Private Tasks
 
 // Removes the previous version.
-function clean(cb) {
+function clean(done) {
   del.sync(destination);
-  cb();
+  done();
 }
 
 // Creates the indented content.
@@ -75,9 +75,9 @@ function dolib() {
 }
 
 // Removes the temp file(s).
-function delcore(cb) {
+function delcore(done) {
   del.sync(`${destination}/core.js`);
-  cb();
+  done();
 }
 
 

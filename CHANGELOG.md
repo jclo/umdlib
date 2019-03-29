@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.8.3 (March 29, 2019)
+
+  * Updated the dependencies,
+  * ...,
+
+
 ### 0.8.2 (February 4, 2019)
 
   * Updated the build by removing the eslint instruction "prefer-arrow-callback",

@@ -1,6 +1,6 @@
 {
   "name": "umdlib",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A template for writing micro UMD Javascript libraries",
   "main": "index.js",
   "bin": {
@@ -24,7 +24,8 @@
     "url": "https://github.com/jclo/umdlib.git"
   },
   "keywords": [
-    "UMD",
+    "es5",
+    "umd",
     "library",
     "template",
     "boilerplate",
@@ -34,7 +35,9 @@
     "prototypal instantiation",
     "pseudoclassical instantiation",
     "pseudoclassical auto instantiation",
-    "gitbook"
+    "gulp",
+    "mocha",
+    "istanbul"
   ],
   "author": {
     "name": "jclo",
@@ -49,14 +52,14 @@
   "dependencies": {
     "nopt": "4.0.1",
     "path": "0.12.7",
-    "vuepress": "0.14.8"
+    "vuepress": "0.14.10"
   },
   "devDependencies": {
     "chai": "4.2.0",
-    "coveralls": "3.0.2",
+    "coveralls": "3.0.3",
     "cross-env": "5.2.0",
-    "del": "3.0.0",
-    "eslint": "5.13.0",
+    "del": "4.0.0",
+    "eslint": "5.15.3",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0",
     "gulp": "4.0.0",
@@ -64,10 +67,10 @@
     "gulp-footer": "2.0.2",
     "gulp-header": "2.0.7",
     "gulp-replace": "1.0.0",
-    "gulp-uglify": "3.0.1",
+    "gulp-uglify": "3.0.2",
     "husky": "1.3.1",
-    "mocha": "5.2.0",
-    "nyc": "13.2.0",
+    "mocha": "6.0.2",
+    "nyc": "13.3.0",
     "opener": "1.5.1"
   },
   "private": false,
